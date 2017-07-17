@@ -20,6 +20,7 @@ int fact(int x){
   }
 }
 
+
 int main(int argc,char* argv[]){
   int x, ret;
   while((argc > 1) && (argv[1][0] == '-')){
