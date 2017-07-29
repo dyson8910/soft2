@@ -1,0 +1,33 @@
+(defun linear-combination (a b x y)
+  (add (mul a x) (mul b y)))
+
+
+(defun make-rat (n d)
+  (cons n d))
+(defun numer (x) (car x))
+(defun denom (x) (cdr x))
+(defun print-rat (x) (prin1 (numer x))(prin1 '/)(prin1 (denom x))(print nil))
+(defun add-rat (x y)
+  (make-rat (+ (* (numer x) (denom y))
+	       (* (numer y) (denom x)))
+	    (* (denom x) (denom y))))
+(defun mul-rat (x y)
+  (make-rat (* (numer x) (numer y))
+	    (* (denom x) (denom y))))
+
+(setq one-half (make-rat 1 2))
+(setq one-third (make-rat 1 3))
+(print-rat one-half)
+(print-rat one-third)
+(print-rat (add-rat one-half one-third))
+(print-rat (mul-rat one-half one-third))
+
+
+(defun add (x y)
+  (cond ((consp x) (add-rat x y))
+	(t (+ x y))))
+(defun mul (x y)
+  (cond ((consp x) (mul-rat x y))
+	(t (* x y))))
+(linear-combination 1 2 3 4)
+(print-rat (linear-combination one-half one-half one-third one-third))
